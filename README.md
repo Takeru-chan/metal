@@ -36,7 +36,27 @@ mailが正しく設定されている場合にはスクリプト内のMAIL\_ADDR
 また、取得結果を蓄積したい場合にはスクリプト内のLOG\_DIRECTORYにディレクトリ名を設定しておくと、ログを追記してゆきます。
 ただしログディレクトリはホームディレクトリ下になくてはいけません。  
 
-cronで定期的に実行する前提で作りました。  
+<strike>cronで定期的に実行する前提で作りました。</strike>  
+
+## PowerShell version
+cronで実行するとcurlが上手くデータをダウンロードできなかったので、急遽PowerShell版を作りました。
+wgetに変えてもダメだったのはなぜだろう？？？  
+
+会社のPowerShellが古くてSelect-Stringを通した後のオブジェクトが行単位で扱いづらいので、文字切り出しがかなり力技っぽいです。
+ダサいね。  
+
+```
+PS C:\Users\takeru> .\metal.ps1
+
+2016年4月6日 19:18:06
+主要金属材料市中価格
+SUS304 @310
+SGCC @155
+SECC @88
+C1100 @850
+A5052P @695
+A6063 @600
+```
 
 ## License
 This script has released under the MIT license.  
