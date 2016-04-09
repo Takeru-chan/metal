@@ -1,5 +1,5 @@
-#! /usr/local/bin/bash
-# @(#) metal.sh ver.0.1  2016.4.2  (c)Takeru.
+#! /bin/bash
+# @(#) metal.sh ver.0.11  2016.4.9  (c)Takeru.
 #
 # さくらインターネットでは/usr/local/binにbashがあります。適宜正しいパスに修正してください。
 #
@@ -22,7 +22,7 @@ curl $URL | nkf -w8 > $TMP_FILE
 date +%Y%m%d\(%a\)%H:%M > $TMP_LOG
 for ((num = 0; num < ${#keywd[@]}; num++)) {
     printf "%-6s" ${metal[$num]} >> $TMP_LOG
-    printf "%4d\n" `grep -e ${keywd[$num]} $TMP_FILE -A ${line[$num]} | tail -1 | tr "\<|\>|," "\n" | head -3 | tail -1` >> $TMP_LOG
+    printf "%4d\n" `grep -e ${keywd[$num]} $TMP_FILE -A ${line[$num]} | tail -1 | tr "<>," "\n" | head -3 | tail -1` >> $TMP_LOG
 }
 
 if test "$MAIL_ADDRESS" != ""; then                 # mailコマンドを正しく設定のうえ、ご利用ください
