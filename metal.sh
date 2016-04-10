@@ -1,5 +1,5 @@
 #! /bin/bash
-# @(#) metal.sh ver.0.11  2016.4.9  (c)Takeru.
+# @(#) metal.sh ver.0.2  2016.4.10  (c)Takeru.
 #
 # さくらインターネットでは/usr/local/binにbashがあります。適宜正しいパスに修正してください。
 #
@@ -8,6 +8,9 @@
 #      http://opensource.org/licenses/MIT
 #
 #######################################################################
+if test "$1" == "-s"; then
+    SILENT="$1"
+fi
 declare -a keywd=("冷延ステンレス鋼板" "溶融亜鉛めっき鋼板" "電気亜鉛めっき鋼板" "銅小板" "アルミ合金板" "アルミ合金形")
 declare -a metal=("SUS304" "SGCC" "SECC" "C1100" "A5052P" "A6063")
 declare -a line=(2 2 2 2 3 3)
@@ -17,7 +20,7 @@ TMP_LOG=${HOME}/metal_log
 MAIL_ADDRESS=''                 # 結果をメール送信したい場合に指定する
 LOG_DIRECTORY=''                # ログを保管したい場合に指定する
 
-curl $URL | nkf -w8 > $TMP_FILE
+curl $SILENT $URL | nkf -w8 > $TMP_FILE
 
 date +%Y%m%d\(%a\)%H:%M > $TMP_LOG
 for ((num = 0; num < ${#keywd[@]}; num++)) {
