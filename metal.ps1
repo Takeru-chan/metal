@@ -1,9 +1,9 @@
 #-----------------------------------------------------------------------
 $credit = @"
-  metal.ps1 ver.0.1.1  2016.7.27  (c)Takeru.
+  metal.ps1 ver.0.1.2  2017.1.19  (c)Takeru.
 
-  ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ•ã‚¡ã‚¤ãƒ«ç”¨ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¨ã—ã¦$HOMEç›´ä¸‹ã«
-  tempãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ç”¨æ„ã—ã¦ãã ã•ã„ã€‚
+  ƒLƒƒƒbƒVƒ…ƒtƒ@ƒCƒ‹—pƒfƒBƒŒƒNƒgƒŠ‚Æ‚µ‚Ä$HOME’¼‰º‚É
+  tempƒfƒBƒŒƒNƒgƒŠ‚ğ—pˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
 
          Copyright (c) 2016 Takeru.
          Release under the MIT license
@@ -11,8 +11,8 @@ $credit = @"
 "@
 #-----------------------------------------------------------------------
 Get-Date
-Write-Host ä¸»è¦é‡‘å±ææ–™å¸‚ä¸­ä¾¡æ ¼
-$KEYWD = @("å†·å»¶ã‚¹ãƒ†ãƒ³ãƒ¬ã‚¹", "æº¶èäºœé‰›ã‚ã£ã", "é›»æ°—äºœé‰›ã‚ã£ã", "éŠ…å°æ¿", "ã‚¢ãƒ«ãƒŸå¤§æ¿", "ã‚¢ãƒ«ãƒŸåˆé‡‘æ¿", "ã‚¢ãƒ«ãƒŸåˆé‡‘å½¢")
+Write-Host å—v‹à‘®Ş—¿s’†‰¿Ši
+$KEYWD = @("—â‰„ƒXƒeƒ“ƒŒƒX", "—n—ZˆŸ‰”‚ß‚Á‚«", "“d‹CˆŸ‰”‚ß‚Á‚«", "“º¬”Â", "ƒAƒ‹ƒ~‘å”Â", "ƒAƒ‹ƒ~‡‹à”Â", "ƒAƒ‹ƒ~‡‹àŒ`")
 $MATERIAL = @("SUS304", "SGCC", "SECC", "C1100", "A1050P", "A5052P", "A6063")
 $LINES = @(2, 2, 2, 2, 2, 3, 3)
 $URL = "http://www.japanmetaldaily.com/market/details/index.php"
@@ -23,6 +23,6 @@ $enc = [Text.Encoding]::GetEncoding("EUC-JP")
 [IO.File]::ReadAllLines($CACHE+".raw", $enc) | Out-File $CACHE".enc" -Encoding UTF8
 for ($num = 0; $num -lt 7; $num++) {
     get-Content $CACHE".enc" | Select-String $KEYWD[$num] -Context $LINES[$num] | % {$_ -Split "`n"} | % {$VALUE = $_}
-    $MATERIAL[$num]+" @"+((($VALUE | % {$_ -Split "`>"})[1] | % {$_ -Split "`<"})[0] | % {$_ -Replace ",000",""})
+    $MATERIAL[$num]+"`t@"+((($VALUE | % {$_ -Split "`>"})[1] | % {$_ -Split "`<"})[0] | % {$_ -Replace ",000",""})
 }
 Remove-Item $CACHE"*"
